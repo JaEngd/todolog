@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 const mongoUrl = process.env.MONGO_URL
 mongoose.connect(mongoUrl, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true    
 })
 .then(() => console.log("MongoDB connection established..."))
 .catch((error) => console.error("MongoDB connection failed:", error.message))
