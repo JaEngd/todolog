@@ -6,7 +6,7 @@ const todoSchema = new mongoose.Schema({
         required: [true, "Name required"], 
         minlength: [3, "To few words"], 
         maxlength: 200 },
-    author: String,
+    author: {type: String, minlength: 3, maxlength: 30},
     uid: String,
     isComplete: Boolean,
     date: { 
