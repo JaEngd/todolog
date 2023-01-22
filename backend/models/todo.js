@@ -3,8 +3,8 @@ const mongoose = require("mongoose")
 const todoSchema = new mongoose.Schema({
     name: { 
         type: String, 
-        require: true, 
-        minlength: 3, 
+        required: [true, "Name required"], 
+        minlength: [3, "To few words"], 
         maxlength: 200 },
     author: String,
     uid: String,

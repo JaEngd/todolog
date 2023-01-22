@@ -13,7 +13,7 @@ router.post("/", async(req, res) => {
         isComplete, 
         date, 
         uid
-    });
+    })
 
     try {
         todo = await todo.save()
@@ -22,6 +22,6 @@ router.post("/", async(req, res) => {
         res.status(500).send(error.message)
         console.log(error.message)
     } 
-});
+})
 
 module.exports = router
