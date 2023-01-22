@@ -1,9 +1,17 @@
+const todos = require ("./routes/todos")
 const express = require ("express")
 const app = express()
 const mongoose = require("mongoose")
+const cors = require("cors")
+
 require("dotenv").config(); 
 
 mongoose.set('strictQuery', true); 
+ 
+app.use(cors())
+app.use(express.json()) //Middleware function that passes json in the request
+
+app.use("/api/todos", todos)
 
 app.get("/", (req, res) => {
     res.send("Welcome!")
