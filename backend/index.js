@@ -1,5 +1,6 @@
 const todos = require ("./routes/todos")
 const signUp = require("./routes/signUp")
+const signIn = require("./routes/signIn")
 const express = require ("express")
 const app = express()
 const mongoose = require("mongoose")
@@ -14,6 +15,7 @@ app.use(express.json()) //Middleware function that passes json in the request
 
 app.use("/api/todos", todos)
 app.use("/api/signup", signUp)
+app.use("/api/signin", signIn)
 
 app.get("/", (req, res) => {
     res.send("Welcome!")
