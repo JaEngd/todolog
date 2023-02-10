@@ -12,7 +12,7 @@ const NavBar = () => {
     return ( 
     <>
         <StyledLink to="/">
-            Styled, exciting Link
+            TodosApp
         </StyledLink>
     </> 
     );
