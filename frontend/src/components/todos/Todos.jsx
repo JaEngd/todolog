@@ -1,11 +1,11 @@
 import React from 'react'
 
-const SignIn = () => {
+const Todos = () => {
     return ( 
     <>
-    <h2>SignIn</h2>
+    <h2>Todos</h2>
     </> 
     );
 }
  
-export default SignIn;
+export default Todos;
