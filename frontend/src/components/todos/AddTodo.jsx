@@ -1,17 +1,20 @@
 import React from 'react'
 import styled from 'styled-components';
+import { FaRegPaperPlane } from 'react-icons/fa';
 
 export const StyledForm = styled.form`
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 `
 
-export const StyledLabel = styled.label`
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: ${props => props.invalid ? 'red' : 'black'};
+export const FormContainer = styled.div`
+  display: flex;
+  width: 50%;
+  gap: 10px;
 `
 
 export const StyledInput = styled.input`
@@ -22,45 +25,33 @@ export const StyledInput = styled.input`
 `
 
 export const StyledButton = styled.button`
-  background-color: #4caf50;
+  background-color: #244b5c;
   color: white;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 10px 30px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  &:disabled {
-    opacity: 0.5;
-  }
-  &:enabled {
-    opacity: 1.0;
-  }
-  opacity: ${props => !props.enabled ? 0.5 : 1};
 `
 
-export const StyledAlert = styled.div`
-  padding: 10px;
-  background-color: #f44336;
+export const SendIcon = styled(FaRegPaperPlane)`
   color: white;
-  margin-top: 10px;
-  border-radius: 5px;
 `
-
 
 const AddTodo = () => {
     return ( 
     <>
         <StyledForm>
-            <StyledLabel>Username:</StyledLabel>
+          <FormContainer noValidate autoComplete = "off">
             <StyledInput 
-            id="enter-todo"
-            label="enterToDo" 
-            type="text"
-            autoFocus
-            fullwidth />
-            <StyledLabel>Password:</StyledLabel>
-            <StyledInput type="password" />
-            <StyledButton type="submit">Login</StyledButton>
+              id="enter-todo"
+              label="enterToDo" 
+              type="text"
+              autoFocus
+              fullwidth />
+            <StyledButton type="submit">
+              <SendIcon />
+            </StyledButton>
+          </FormContainer>
         </StyledForm>
     </> 
     );

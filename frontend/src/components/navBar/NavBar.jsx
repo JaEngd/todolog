@@ -2,33 +2,20 @@ import React from 'react'
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa'
 
-import { Link } from "react-router-dom"
+import { NavLink as Link } from "react-router-dom"
 
 const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
+  font-size: 30px;
+  text-align: left;
   color: #c0d6e4;
-`;
-
-const Button = styled.button`
-  display: inline-block;
-  color: palevioletred;
-  background-color: #133b61;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid #c0d6e4;
-  border-radius: 3px;
-  display: block;
 `;
 
 const PrimaryNav = styled.nav`
   z-index: 14;
-  height: 90px;
-  display: flex;
   background: #244b5c;
+  display: flex;
   justify-content: space-between;
-  padding: 0.18rem calc((100vw - 1000px) / 2);
+  padding: 5px 10px;
 `;
 
 export const MenuLink = styled(Link)`
@@ -60,6 +47,14 @@ export const Hamburger = styled(FaBars)`
 export const Menu = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`
+
+export const Logo = styled.div`
+  display: flex;
+  align-items: center;
   margin-right: -25px;
   @media screen and (max-width: 768px) {
     display: none;
@@ -76,28 +71,25 @@ const NavBar = () => {
     return ( 
         <>
             <PrimaryNav>
-            <Hamburger />
+              <Hamburger />
+                <Logo>
+                  <MenuLink to="/">
+                    <Title>
+                      TodosApp
+                    </Title>
+                  </MenuLink>
+                </Logo>
                 <Menu>
-                    <MenuLink to="/">
-                        <Title>
-                            TodosApp
-                        </Title>
-                    </MenuLink>
+                  <MenuLink to="/signout">
+                    SignOut
+                  </MenuLink>
+                  <MenuLink to="/signin">
+                    SignIn
+                  </MenuLink>
+                  <MenuLink to="/signup">
+                    SignUp
+                  </MenuLink>
                 </Menu>
-                <Button
-                    
-                    >SignOut
-                </Button>
-                <Button>
-                    <MenuLink to="/signin">
-                        SignIn
-                    </MenuLink>
-                </Button>
-                <Button>
-                    <MenuLink to="/signup">
-                        SignUp
-                    </MenuLink>
-                </Button>
             </PrimaryNav>
         </> 
     );
