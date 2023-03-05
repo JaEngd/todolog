@@ -5,8 +5,8 @@ import ListTodos from './ListTodos';
 const Todos = () => {
     return ( 
     <>
-    <AddTodo />
-    <ListTodos />
+        <AddTodo />
+        <ListTodos />
     </> 
     );
 }

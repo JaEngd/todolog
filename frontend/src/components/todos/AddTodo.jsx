@@ -13,8 +13,8 @@ export const StyledForm = styled.form`
 
 export const FormContainer = styled.div`
   display: flex;
-  width: 50%;
   gap: 10px;
+  width: 50%;
 `
 
 export const StyledInput = styled.input`

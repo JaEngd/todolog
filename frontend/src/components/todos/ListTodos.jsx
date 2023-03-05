@@ -12,7 +12,7 @@ const Title = styled.h5`
 const ListTodos = () => {
     return ( 
     <>
-    <div>
+    <div >
         <Title>
             The todos
         </Title>
