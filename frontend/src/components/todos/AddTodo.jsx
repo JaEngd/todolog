@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+
 import styled from 'styled-components';
 import { FaRegPaperPlane } from 'react-icons/fa';
+
+import { addTodo } from '../../store/actions/todoActions';
 
 export const StyledForm = styled.form`
   background-color: #f4f4f4;
@@ -38,6 +42,25 @@ export const SendIcon = styled(FaRegPaperPlane)`
 `
 
 const AddTodo = () => {
+    const dispatch = useDispatch()
+
+    const [ todo, setTodo ] = useState({
+      name: "",
+      isComplete: false
+    })
+
+    const handleSubmit = (e) => {
+      
+      e.preventDefault()
+
+      dispatch(addTodo(todo))
+
+      setTodo({
+        name: "",
+        isComplete: false
+      })
+    }
+
     return ( 
     <>
         <StyledForm>
@@ -47,8 +70,11 @@ const AddTodo = () => {
               label="enterToDo" 
               type="text"
               autoFocus
-              fullwidth />
-            <StyledButton type="submit">
+              fullwidth
+              value = {todo.name}
+              onChange = {(e) => setTodo({...todo, name: e.target.value, date: new Date()})} 
+              />
+            <StyledButton onClick={ handleSubmit } type="submit">
               <SendIcon />
             </StyledButton>
           </FormContainer>
