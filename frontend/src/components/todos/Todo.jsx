@@ -4,6 +4,8 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { FaPen } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 
+import moment from "moment"
+
 const Description = styled.p`
   font-size: 15px;
   text-align: left;
@@ -58,19 +60,19 @@ export const IconButton = styled.button`
   cursor: pointer;
 `
 
-const Todo = () => {
+const Todo = ({todo}) => {
     return ( 
     <>
         <TodosWrapper>
             <DescWrapper>
                 <Description>
-                    Learn React
+                    {todo.name}
                 </Description>
                 <Description>
                     Author: Jacob
                 </Description>
                 <Description>
-                    Added: 4 days ago
+                    Added: { moment(todo.date).fromNow() }
                 </Description>
             </DescWrapper>
             <IconWrapper>

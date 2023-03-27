@@ -10,8 +10,9 @@ import rootReducer from './store/reducers/rootReducer';
 
 const store = configureStore({
   reducer: {
-   reducer: rootReducer  
-  },
+   reducer: rootReducer,
+   
+  }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
