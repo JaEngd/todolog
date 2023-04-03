@@ -15,6 +15,13 @@ const todoReducer = (state = [], action) => {
             })
             return state.map((todo) => 
                 todo._id === action.data.todo._id ? action.data.todo : todo
+            )
+        case "CHECK_TODO":
+            toast.success("A todo status was changed...", {
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+            return state.map((todo) => 
+                todo._id === action.data.todo._id ? action.data.todo : todo
             )     
         default:
             return state;

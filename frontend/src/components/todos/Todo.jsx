@@ -1,10 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaPen } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 
 import moment from "moment"
+
+import { checkTodo } from '../../store/actions/todoActions';
 
 const Description = styled.p`
   font-size: 15px;
@@ -62,6 +65,8 @@ export const IconButton = styled.button`
 
 const Todo = ({ todo, setTodo }) => {
 
+    const dispatch = useDispatch();
+
     const handleUpdateClick = () => {
       setTodo(todo)
 
@@ -71,6 +76,10 @@ const Todo = ({ todo, setTodo }) => {
         behavior: "smooth"
 
       })
+    }
+
+    const handleCheck = (id) => {
+      dispatch(checkTodo(id))
     }
  
     return ( 
@@ -88,13 +97,13 @@ const Todo = ({ todo, setTodo }) => {
                 </Description>
             </DescWrapper>
             <IconWrapper>
-                <IconButton type="submit">
+                <IconButton type="submit" onClick={() => handleCheck(todo._id)}>
                     <CheckIcon />   
                 </IconButton>
                 <IconButton type="submit" onClick={ () => handleUpdateClick() }>
                     <EditIcon />   
                 </IconButton>
-                <IconButton type="submit">
+                <IconButton type="submit" >
                     <DeleteIcon />   
                 </IconButton>
             </IconWrapper>

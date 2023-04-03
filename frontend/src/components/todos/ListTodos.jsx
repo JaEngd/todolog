@@ -15,7 +15,6 @@ const Title = styled.h5`
 const ListTodos = ({ setTodo }) => {
     const dispatch = useDispatch()
     const todos = useSelector((state) => state.todos)
-    console.log(todos)
 
     useEffect(() => {
         dispatch(getTodos())
