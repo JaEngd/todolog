@@ -8,11 +8,11 @@ import { getTodos } from '../../store/actions/todoActions';
 
 const Title = styled.h5`
   font-size: 20px;
-  text-align: left;
+  text-align: left; 
   color: black;
 `;
 
-const ListTodos = () => {
+const ListTodos = ({ setTodo }) => {
     const dispatch = useDispatch()
     const todos = useSelector((state) => state.todos)
     console.log(todos)
@@ -32,6 +32,7 @@ const ListTodos = () => {
                 <Todo 
                 todo={todo}
                 key={todo._id}
+                setTodo= { setTodo }
                 />
             )
         }) }

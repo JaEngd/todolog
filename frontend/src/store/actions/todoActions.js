@@ -1,5 +1,6 @@
 import axios from "axios"
 import { url } from "../../api"
+import { toast } from "react-toastify"
 
 export const getTodos = () => {
     return (dispatch) => {
@@ -17,10 +18,10 @@ export const getTodos = () => {
     }
 }
 
-export const addTodo = (todo) => {
+export const addTodo = (newTodo) => {
     return (dispatch, getState) => {
         axios
-        .post(`${url}/todos`, todo)
+        .post(`${url}/todos`, newTodo)
         .then(todo => {
             dispatch({
                 type: "ADD_TODO",
@@ -29,6 +30,9 @@ export const addTodo = (todo) => {
         })
         .catch( error => {
             console.log(error.response)
+            toast.error(error.response?.data, {
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
         })
     }
 }
@@ -45,6 +49,9 @@ export const updateTodo = (updatedTodo, id) => {
         })
         .catch( error => {
             console.log(error.response)
+            toast.error(error.response?.data, {
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
         })
     }
 }

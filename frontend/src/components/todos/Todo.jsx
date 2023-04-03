@@ -60,7 +60,19 @@ export const IconButton = styled.button`
   cursor: pointer;
 `
 
-const Todo = ({todo}) => {
+const Todo = ({ todo, setTodo }) => {
+
+    const handleUpdateClick = () => {
+      setTodo(todo)
+
+      window.scrollTo({
+        top:0,
+        left: 0,
+        behavior: "smooth"
+
+      })
+    }
+ 
     return ( 
     <>
         <TodosWrapper>
@@ -79,7 +91,7 @@ const Todo = ({todo}) => {
                 <IconButton type="submit">
                     <CheckIcon />   
                 </IconButton>
-                <IconButton type="submit">
+                <IconButton type="submit" onClick={ () => handleUpdateClick() }>
                     <EditIcon />   
                 </IconButton>
                 <IconButton type="submit">

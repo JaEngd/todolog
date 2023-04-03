@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux';
 
 import styled from 'styled-components';
 import { FaRegPaperPlane } from 'react-icons/fa';
 
-import { addTodo } from '../../store/actions/todoActions';
+import { addTodo, updateTodo } from '../../store/actions/todoActions';
 
 export const StyledForm = styled.form`
   background-color: #f4f4f4;
@@ -41,23 +41,35 @@ export const SendIcon = styled(FaRegPaperPlane)`
   color: white;
 `
 
-const AddTodo = () => {
+const AddTodo = ({ todo, setTodo }) => {
     const dispatch = useDispatch()
-
-    const [ todo, setTodo ] = useState({
-      name: "",
-      isComplete: false
-    })
 
     const handleSubmit = (e) => {
       
       e.preventDefault()
 
-      dispatch(addTodo(todo))
+      if(todo._id) {
+        const id = todo._id
+        const updatedTodo = {
+          name: todo.name,
+          isComplete: todo.isComplete,
+          date: todo.date,
+          author: "Jacob",
+        }
+
+        dispatch(updateTodo(updatedTodo, id))
+
+      } else {
+        const newTodo = {
+          ...todo, 
+          date: new Date()
+        }
+        dispatch(addTodo(newTodo)) 
+      }
 
       setTodo({
         name: "",
-        isComplete: false
+        isComplete: false 
       })
     }
 
@@ -72,7 +84,7 @@ const AddTodo = () => {
               autoFocus
               fullwidth
               value = {todo.name}
-              onChange = {(e) => setTodo({...todo, name: e.target.value, date: new Date()})} 
+              onChange = {(e) => setTodo({ ...todo, name: e.target.value })} 
               />
             <StyledButton onClick={ handleSubmit } type="submit">
               <SendIcon />
