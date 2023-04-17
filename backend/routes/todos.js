@@ -94,7 +94,7 @@ router.patch("/:id", async (req, res) => {
 
         const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, {
         isComplete: !todo.isComplete
-    })
+    }, { new: true })
         res.send(updatedTodo)
     } catch (error) {
         res.status(500).send(error.message)

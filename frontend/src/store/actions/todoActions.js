@@ -59,7 +59,7 @@ export const updateTodo = (updatedTodo, id) => {
 export const checkTodo = (id) => {
     return (dispatch) => {
         axios
-        .put(`${url}/todos/${id}`, {})
+        .patch(`${url}/todos/${id}`, {})
         .then(todo => {
             dispatch({
                 type: "CHECK_TODO",
