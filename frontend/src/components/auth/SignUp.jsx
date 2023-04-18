@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { FaRegPaperPlane } from 'react-icons/fa';
+
+import { signUp } from '../../store/actions/authActions';
 
 export const StyledForm = styled.form`
   background-color: #f4f4f4;
@@ -46,32 +49,61 @@ export const SendIcon = styled(FaRegPaperPlane)`
 `
 
 const SignUp = () => {
+
+    const dispatch = useDispatch()
+    const [user, setUser] = useState({
+      name: "",
+      email: "",
+      password: "",
+    })
+
+    const handleSubit = (e) => {
+      e.preventDefault()
+      dispatch(signUp(user))
+      setUser({
+        name: "",
+        email: "",
+        password: "",
+      })
+    }
+
+
+
     return ( 
     <>
         <StyledForm>
-                <FormContainer noValidate autoComplete = "off">
+                <FormContainer noValidate autoComplete = "off" onSubmit= { handleSubit } >
 
                 <StyledInput 
                 id="enter-name"
                 label="enterName" 
                 variant="outlined"
                 autoFocus
-                fullwidth />
+                fullwidth 
+                value = { user.name }
+                onChange = {(e) => setUser({...user, name: e.target.value})}
+                />
 
                 <StyledInput 
                 id="enter-email"
                 label="enterEmail" 
                 variant="outlined"
                 autoFocus
-                fullwidth />
+                fullwidth 
+                value = { user.email }
+                onChange = {(e) => setUser({...user, email: e.target.value})}
+                />
             
-            <StyledInput 
+             <StyledInput 
               id="enter-password"
               type="password"
               label="enterPassword" 
               variant="outlined"
               autoFocus
-              fullwidth />
+              fullwidth 
+              value = { user.name }
+              onChange = {(e) => setUser({...user, password: e.target.value})}
+              />
             </FormContainer>
 
         <ButtonContainer>

@@ -7,7 +7,7 @@ import { FaTrash } from 'react-icons/fa';
 
 import moment from "moment"
 
-import { checkTodo } from '../../store/actions/todoActions';
+import { checkTodo, deleteTodo } from '../../store/actions/todoActions';
 
 const Description = styled.p`
   font-size: 15px;
@@ -81,6 +81,10 @@ const Todo = ({ todo, setTodo }) => {
     const handleCheck = (id) => {
       dispatch(checkTodo(id))
     }
+
+    const handleDelete = (id) => {
+      dispatch(deleteTodo(id))
+    }
  
     return ( 
     <>
@@ -103,7 +107,7 @@ const Todo = ({ todo, setTodo }) => {
                 <IconButton type="submit" onClick={ () => handleUpdateClick() }>
                     <EditIcon />   
                 </IconButton>
-                <IconButton type="submit" >
+                <IconButton type="submit" onClick={ () => handleDelete(todo._id) }>
                     <DeleteIcon />   
                 </IconButton>
             </IconWrapper>
