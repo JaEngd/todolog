@@ -50,14 +50,16 @@ export const SendIcon = styled(FaRegPaperPlane)`
 
 const SignUp = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() 
+    const state = useSelector(state => state)
+    
     const [user, setUser] = useState({
       name: "",
       email: "",
       password: "",
     })
 
-    const handleSubit = (e) => {
+    const handleSubmit = (e) => {
       e.preventDefault()
       dispatch(signUp(user))
       setUser({
@@ -72,13 +74,16 @@ const SignUp = () => {
     return ( 
     <>
         <StyledForm>
-                <FormContainer noValidate autoComplete = "off" onSubmit= { handleSubit } >
+                <FormContainer 
+                noValidate 
+                autoComplete = "off" 
+                onClick={handleSubmit} 
+                >
 
                 <StyledInput 
                 id="enter-name"
                 label="enterName" 
                 variant="outlined"
-                autoFocus
                 fullwidth 
                 value = { user.name }
                 onChange = {(e) => setUser({...user, name: e.target.value})}
@@ -88,7 +93,6 @@ const SignUp = () => {
                 id="enter-email"
                 label="enterEmail" 
                 variant="outlined"
-                autoFocus
                 fullwidth 
                 value = { user.email }
                 onChange = {(e) => setUser({...user, email: e.target.value})}
@@ -99,16 +103,17 @@ const SignUp = () => {
               type="password"
               label="enterPassword" 
               variant="outlined"
-              autoFocus
-              fullwidth 
-              value = { user.name }
+              fullwidth
+              value = { user.password }
               onChange = {(e) => setUser({...user, password: e.target.value})}
               />
             </FormContainer>
 
         <ButtonContainer>
             <StyledButton 
-            type="submit">
+            type="button"
+            onClick={handleSubmit}
+            >
               <SendIcon />
             </StyledButton>
         </ButtonContainer>

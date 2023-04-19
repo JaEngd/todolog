@@ -22,7 +22,14 @@ const todoReducer = (state = [], action) => {
             })
             return state.map((todo) => 
                 todo._id === action.data.todo._id ? action.data.todo : todo
-            )     
+            )
+        case "DELETE_TODO":
+            toast.success("A todo status was deleted...", {
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+            return state.filter((todo) => 
+                todo._id !== action._id
+            )      
         default:
             return state;
     }
