@@ -1,4 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from "react-router-dom"
+
+import { signIn } from '../../store/actions/authActions';
+
 import styled from 'styled-components';
 import { FaRegPaperPlane } from 'react-icons/fa';
 
@@ -46,16 +51,43 @@ export const SendIcon = styled(FaRegPaperPlane)`
 `
 
 const SignIn = () => {
+
+    const dispatch = useDispatch()
+    const auth = useSelector(state => state.auth)
+    const [creds, setCreds] = useState({
+        email: "",
+        password: "",
+
+    })
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      dispatch(signIn(creds))
+      setCreds({
+        email: "",
+        password: "",
+
+      })
+    }
+    
+    if(auth._id) return <Navigate to="/" />
+
     return ( 
     <>
         <StyledForm>
-                <FormContainer noValidate autoComplete = "off">
+                <FormContainer 
+                  noValidate 
+                  autoComplete = "off" 
+                  onClick={handleSubmit}>
                 <StyledInput 
                 id="enter-email"
                 label="enterEmail" 
                 variant="outlined"
                 autoFocus
-                fullwidth />
+                fullwidth 
+                value = {creds.email}
+                onChange = {(e) => setCreds({...creds, email: e.target.value})}
+                />
             
             <StyledInput 
               id="enter-password"
@@ -63,7 +95,10 @@ const SignIn = () => {
               label="enterPassword" 
               variant="outlined"
               autoFocus
-              fullwidth />
+              fullwidth 
+              value = {creds.password}
+              onChange = {(e) => setCreds({...creds, password: e.target.value})}
+              />
             </FormContainer>
 
         <ButtonContainer>

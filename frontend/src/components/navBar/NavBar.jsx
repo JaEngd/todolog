@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa'
 
@@ -63,7 +64,8 @@ export const Logo = styled.div`
 
 const NavBar = () => {
     //const history = useHistory();
-
+    const state = useSelector(state => state)
+    console.log(state);
     //const handleSignOut = () => {
         //SignOut the user   
         //history.push("/signin")
