@@ -1,9 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa'
 
-import { NavLink as Link } from "react-router-dom"
+import { NavLink as Link, useNavigate } from "react-router-dom"
+
+import { signOut } from '../../store/actions/authActions';
 
 const Title = styled.h1`
   font-size: 30px;
@@ -63,13 +65,16 @@ export const Logo = styled.div`
 `
 
 const NavBar = () => {
-    //const history = useHistory();
+    const navigate = useNavigate();
     const state = useSelector(state => state)
     console.log(state);
-    //const handleSignOut = () => {
-        //SignOut the user   
-        //history.push("/signin")
-    //}
+    const dispatch = useDispatch();
+
+    const handleSignOut = () => {
+        //SignOut the user
+        dispatch(signOut())   
+        navigate.push("/signin")
+    }
     return ( 
         <>
             <PrimaryNav>
@@ -82,7 +87,7 @@ const NavBar = () => {
                   </MenuLink>
                 </Logo>
                 <Menu>
-                  <MenuLink to="/signout">
+                  <MenuLink onClick={() => handleSignOut()}>
                     SignOut
                   </MenuLink>
                   <MenuLink to="/signin">

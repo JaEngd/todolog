@@ -10,6 +10,8 @@ router.get("/", auth, async(req, res) => {
         const todos = await Todo.find()
         .sort({ date: -1 })
 
+        const filteredTodos = todos.filter( todo => todo.uid === req.user._id)
+
         res.send(todos)
     } catch(error) {
         res.status(500).send(error.message)
