@@ -68,7 +68,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     const state = useSelector(state => state)
     console.log(state);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
 
     const handleSignOut = () => {
         //SignOut the user

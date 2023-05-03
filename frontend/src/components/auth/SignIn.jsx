@@ -70,7 +70,7 @@ const SignIn = () => {
       })
     }
     
-    if(auth._id) return <Navigate to="/" />
+    if(auth && auth._id) return <Navigate to="/" />
 
     return ( 
     <>

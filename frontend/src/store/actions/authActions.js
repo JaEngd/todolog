@@ -46,13 +46,15 @@ export const signIn = (creds) => {
 
 export const loadUser = () => {
     return (dispatch, getState) => {
-        const token = getState().auth.token;
-        if(token) {
+        const auth = getState().auth;
+        if (auth && auth.token) {
             dispatch({
                 type: "USER_LOADED",
-                token,
+                token: auth.token,
             })
-        } else return null
+        } else {
+            return null;
+        }
     }
 }
 

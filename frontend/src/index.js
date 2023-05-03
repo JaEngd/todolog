@@ -11,7 +11,6 @@ import rootReducer from './store/reducers/rootReducer';
 const store = configureStore({
   reducer: {
    reducer: rootReducer,
-   
   }
 });
 
