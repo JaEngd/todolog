@@ -23,11 +23,11 @@ function App() {
       <BrowserRouter>
       <ToastContainer />
         <NavBar/>
-        <Routes>
-            <Route path="/signin" element={<SignIn />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/" element={<Todos />}></Route>
-        </Routes> 
+          <Routes>
+              <Route path="/signin" element={<SignIn />}></Route>
+              <Route path="/signup" element={<SignUp />}></Route>
+              <Route path="/" element={<Todos />}></Route>
+          </Routes> 
       </BrowserRouter>
     </div>
   );

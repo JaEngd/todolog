@@ -71,7 +71,6 @@ const NavBar = () => {
     const dispatch = useDispatch(); 
 
     const handleSignOut = () => {
-        //SignOut the user
         dispatch(signOut())   
         navigate.push("/signin")
     }
@@ -80,9 +79,9 @@ const NavBar = () => {
             <PrimaryNav>
               <Hamburger />
                 <Logo>
-                  <MenuLink to="/">
+                  <MenuLink to="/"  >
                     <Title>
-                      TodosApp
+                      TodosApp 
                     </Title>
                   </MenuLink>
                 </Logo>

@@ -41,6 +41,7 @@ export const SendIcon = styled(FaRegPaperPlane)`
   color: white;
 `
 
+
 const AddTodo = ({ todo, setTodo }) => {
     const dispatch = useDispatch()
 
@@ -52,9 +53,10 @@ const AddTodo = ({ todo, setTodo }) => {
         const id = todo._id
         const updatedTodo = {
           name: todo.name,
-          isComplete: todo.isComplete,
+          isComplete: todo.isComplete,    
           date: todo.date,
-          author: "Jacob",
+          author: todo.author,
+          uid: todo.uid
         }
 
         dispatch(updateTodo(updatedTodo, id))
@@ -76,13 +78,14 @@ const AddTodo = ({ todo, setTodo }) => {
     return ( 
     <>
         <StyledForm>
-          <FormContainer noValidate autoComplete = "off">
+          <FormContainer noValidate autoComplete = "off" onSubmit = { handleSubmit }>
             <StyledInput 
               id="enter-todo"
               label="enterToDo" 
               type="text"
               autoFocus
               fullwidth
+              placeholder="Add todo..."
               value = {todo.name}
               onChange = {(e) => setTodo({ ...todo, name: e.target.value })} 
               />

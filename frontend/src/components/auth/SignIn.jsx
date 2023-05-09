@@ -62,7 +62,7 @@ const SignIn = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      dispatch(signIn(creds))
+      dispatch(signIn(creds.email, creds.password))
       setCreds({
         email: "",
         password: "",
@@ -78,13 +78,14 @@ const SignIn = () => {
                 <FormContainer 
                   noValidate 
                   autoComplete = "off" 
-                  onClick={handleSubmit}>
+                  onSubmit={handleSubmit}>
                 <StyledInput 
                 id="enter-email"
                 label="enterEmail" 
                 variant="outlined"
                 autoFocus
-                fullwidth 
+                fullwidth
+                placeholder="Email" 
                 value = {creds.email}
                 onChange = {(e) => setCreds({...creds, email: e.target.value})}
                 />
@@ -96,6 +97,7 @@ const SignIn = () => {
               variant="outlined"
               autoFocus
               fullwidth 
+              placeholder="Password"
               value = {creds.password}
               onChange = {(e) => setCreds({...creds, password: e.target.value})}
               />
@@ -103,7 +105,9 @@ const SignIn = () => {
 
         <ButtonContainer>
             <StyledButton 
-            type="submit">
+            type="submit"
+            onClick={handleSubmit}
+            >
               <SendIcon />
             </StyledButton>
         </ButtonContainer>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { FaRegPaperPlane } from 'react-icons/fa';
+import { Navigate } from "react-router-dom"
 
 import { signUp } from '../../store/actions/authActions';
 
@@ -52,7 +53,7 @@ const SignUp = () => {
 
     const dispatch = useDispatch() 
     const state = useSelector(state => state)
-    
+    const auth = useSelector((state) => state.auth);
     const [user, setUser] = useState({
       name: "",
       email: "",
@@ -69,7 +70,7 @@ const SignUp = () => {
       })
     }
 
-
+    if(auth && auth._id) return <Navigate to="/" />
 
     return ( 
     <>
@@ -77,13 +78,14 @@ const SignUp = () => {
                 <FormContainer 
                 noValidate 
                 autoComplete = "off" 
-                onClick={handleSubmit} 
+                onSubmit={handleSubmit} 
                 >
 
                 <StyledInput 
                 id="enter-name"
                 label="enterName" 
                 variant="outlined"
+                placeholder="Name"
                 fullwidth 
                 value = { user.name }
                 onChange = {(e) => setUser({...user, name: e.target.value})}
@@ -93,6 +95,7 @@ const SignUp = () => {
                 id="enter-email"
                 label="enterEmail" 
                 variant="outlined"
+                placeholder="Email"
                 fullwidth 
                 value = { user.email }
                 onChange = {(e) => setUser({...user, email: e.target.value})}
@@ -103,6 +106,7 @@ const SignUp = () => {
               type="password"
               label="enterPassword" 
               variant="outlined"
+              placeholder="Password"
               fullwidth
               value = { user.password }
               onChange = {(e) => setUser({...user, password: e.target.value})}
@@ -111,7 +115,7 @@ const SignUp = () => {
 
         <ButtonContainer>
             <StyledButton 
-            type="button"
+            type="submit"
             onClick={handleSubmit}
             >
               <SendIcon />

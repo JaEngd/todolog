@@ -21,15 +21,15 @@ export const getTodos = () => {
 
 export const addTodo = (newTodo) => {
     return (dispatch, getState) => {
-        const author = getState().auth.name
-        const uid = getState().auth._id
+        const author = getState().auth?.name
+        const uid = getState().auth?._id
 
         axios
         .post(`${url}/todos`, { ...newTodo, author, uid }, setHeaders())
         .then(todo => {
             dispatch({
                 type: "ADD_TODO",
-                todo
+                todo,
             }) 
         })
         .catch( error => {
@@ -40,6 +40,7 @@ export const addTodo = (newTodo) => {
         })
     }
 }
+
 
 export const updateTodo = (updatedTodo, id) => {
     return (dispatch) => {

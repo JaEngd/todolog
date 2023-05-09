@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
+import { Navigate } from "react-router-dom"
+
 
 import styled from 'styled-components';
 
@@ -12,13 +14,16 @@ const Title = styled.h5`
   color: black;
 `;
 
-const ListTodos = ({ setTodo }) => {
+const ListTodos = ({ todo, setTodo }) => {
     const dispatch = useDispatch()
     const todos = useSelector((state) => state.todos)
+    const auth = useSelector(state => state.auth)
 
     useEffect(() => {
         dispatch(getTodos())
     }, [dispatch])
+
+    if(auth && auth._id) return <Navigate to="/" />
 
     return ( 
     <>
@@ -32,6 +37,7 @@ const ListTodos = ({ setTodo }) => {
                 todo={todo}
                 key={todo._id}
                 setTodo= { setTodo }
+                todos={todos}
                 />
             )
         }) }

@@ -94,7 +94,7 @@ const Todo = ({ todo, setTodo }) => {
                     {todo.name}
                 </Description>
                 <Description>
-                    Author: Jacob
+                    Author: {todo.author}
                 </Description>
                 <Description>
                     Added: { moment(todo.date).fromNow() }
